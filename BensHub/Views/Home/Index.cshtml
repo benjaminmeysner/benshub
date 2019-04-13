@@ -1,0 +1,708 @@
+﻿<!DOCTYPE html>
+<html lang=en>
+<head>
+    <title>Ben's space</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Styles -->
+    @Styles.Render("~/Content/dist/css/plain.css")
+    <!-- /Styles -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#resumeNavigationScrollSpy" data-offset="70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3 resume-profile">
+
+                <img width="250" src="/Content/images/bambo-tree-stalk.jpg" class="img-thumbnail" alt="Your Name">
+                <h1>
+                    Ben Meysner
+                    <small class="text-muted">
+                        Software Engineer - Developer
+                    </small>
+                </h1>
+
+                <ul class="list-unstyled">
+                    <li>Location: Leicester, United Kingdom</li>
+                    <li>Email: <a href="mailto://ben_meysner@outlook.com">ben_meysner@outlook.com</a></li>
+                    <li>Website: <a href="http://benmeysner.co.uk">benmeysner.co.uk</a></li>
+                    <li>Tel: <a href="tel://+12345678912">+44 7403153749</a></li>
+                </ul>
+
+                <ul class="list-unstyled">
+                    <li>
+                        LinkedIn: <a href="https://www.linkedin.com/in/benjaminmeysner" target="_blank">@@benjaminmeysner</a>
+                    </li>
+                    <li>
+                        Github: <a href="https://github.com/benjaminmeysner" target="_blank">@@benjaminmeysner</a>
+                    </li>
+                </ul>
+
+                <h1>
+                    <small class="text-muted">
+                        Blog
+                    </small>
+                </h1>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <img width="250" height="150" src="/Content/images/bae_systems.png" class="img-thumbnail" alt="Blog Post">
+                        <a href="#" style="float:right" target="_blank">BAE Systems CTF Event</a>
+                        <small class="text-muted" style="float:right">03/02/2018 - University of Leicester</small>
+                    </li>
+                </ul>
+
+                <h1>
+                    <small class="text-muted">
+                        Visitor Board
+                    </small>
+                </h1>
+
+                @model BensHub.Models.HomeViewModel
+
+                @Html.Partial("_visitorMessagesPartialView", Model)
+
+                <!-- Pagination -->
+                <small style="margin: 4px; text-align:center">
+                    1   2   3   4   ...   7   8   9   10
+                </small>
+
+                @using (Ajax.BeginForm(
+                    "PostMessage",
+                    "VisitorBoard",
+                    new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "messages" }))
+                {
+                    @Html.TextBoxFor(msg => Model.VisitorMessage.Name, new { @class = "board-field", @style = "margin-top:8px;", @minlength = "1", maxlength = "28", placeholder = "Name" })
+                    @Html.TextAreaFor(msg => Model.VisitorMessage.Message, new { @class = "board-field", @rows = "4", @minlength = "1", @maxlength = "128", @placeholder = "Something nice?", })
+                    <input class="board-submit" type="submit" value="Say It" />
+                }
+
+            </div>
+            <!-- /.resume-profile -->
+
+            <div class="col-xs-12 col-sm-8 col-md-6 resume-info">
+
+                <section class="resume-info-section">
+                    <h2 id="introduction">Introduction</h2>
+                    <p class="lead text-justify">
+                        Hello there! I am a Software Engineer based in Leicester, UK. I like all to do with programming, but developments with C#, C++ and Java is what I enjoy getting stuck into most.
+                    </p>
+                </section>
+
+                <section class="resume-info-section">
+                    <h2 id="education">Education</h2>
+
+                    <div class="resume-info-section-block">
+                        <h4>
+                            Computer Science BSc
+                            <small>- Classification: 1:1 (First Class) (76%) University of Leicester, United Kingdom </small>
+                        </h4>
+                        <p>
+                            <small>
+                                2015 → 2018
+                            </small>
+                        </p>
+                        <p>
+                            Computer Systems, Data Structures and Development Environments, Databases and Web Applications, Discrete Structures,
+                            Logic and Problem Solving, Program Design, Requirements Engineering and Professional Practice, Automata, Languages and Computation, Functional Programming
+                            Multimedia and Computer Graphics, Operating Systems, Networks and Distributed Systems, Software Engineering Group Project, Software Engineering and System Development
+                            Software Project Management and Professionalism, User Interfaces and HCI, Advanced C++, Web Technologies, Cryptography and Internet Security, Distributed Systems and Applications
+                        </p>
+                    </div>
+
+
+                    <div class="resume-info-section-block">
+                        <h4>
+                            A-Level Higher Education (IT, Biology, Media)
+                            <small>- Gateway College, United Kingdom </small>
+                        </h4>
+                        <p>
+                            <small>
+                                2010 → 2012
+                            </small>
+                        </p>
+
+                        <p>
+                            ICT, Biology, Media
+                        </p>
+                    </div>
+                    <div class="resume-info-section-block">
+                        <h4>
+                            GCSE Education
+                            <small>- English Martyrs Roman Catholic School, United Kingdom </small>
+                        </h4>
+                        <p>
+                            <small>
+                                2006 → 2008
+                            </small>
+                        </p>
+
+                        <p>
+                            10 GCSE A* - C, including Maths A, Science AA, English CC
+                        </p>
+                    </div>
+                </section>
+
+                <section class="resume-info-section">
+                    <h2 id="experience">Experience</h2>
+                    <div class="resume-info-section-block">
+                        <h4 id="experience-web-designer-and-trainee-web-developer">
+                            Software Engineer
+                            <small>
+                                -
+                                <img src="/Content/images/weatherford_icon.jpg" style="display:inline">
+                                Weatherford International.
+                            </small>
+                        </h4>
+                        <p>
+                            <small>
+                                2018
+                            </small>
+                        </p>
+
+                        <p>
+                            To design, develop and maintain a suite of software applications used for the acquisition, interpretation, and analysis of geophysical data within the oil and gas exploration industry
+                        </p>
+                        <small>
+                            <img src="/Content/images/c-plus-plus-logo.png" style="display:inline-block">
+                            <img src="/Content/images/csharp.png" style="display:inline-block">
+                            <img src="/Content/images/aspnet.png" style="display:inline-block">
+                            <img src="/Content/images/net.png" style="display:inline-block">
+                        </small>
+                    </div>
+                    <div class="resume-info-section-block">
+                        <h4 id="experience-web-designer-and-trainee-web-developer">
+                            Voluntary Teaching Assistant
+                            <small> – University of Leicester.</small>
+                        </h4>
+                        <p>
+                            <small>
+                                2016 → 2017
+                            </small>
+                        </p>
+
+                        <p>
+                            My responsibilities included assisting 1st year and 2nd year students undertaking Computer Science, Computing or Computing w/ Management with any difficulties they are 	experiencing. This was all about being the point of contact for technical support whilst being present at the university.
+                        </p>
+                    </div>
+
+                </section>
+
+                <section class="resume-info-section tools-and-tech">
+                    <h2 id="tools-and-technologies">Tools &amp; Technologies</h2>
+
+                    <div class="resume-info-section-block">
+                        <h4>Platforms</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Windows 1998+</li>
+                            <li>Visual Studio</li>
+                            <li>Team Foundation Server</li>
+                            <li>Powershell</li>
+                            <li>Ubuntu Desktop</li>
+                            <li>Deepin Linux</li>
+                            <li>Android</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>Graphic Design</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Adobe Photoshop CS2+</li>
+                            <li>Adobe ImageReady</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>Text editors</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Atom Editor</li>
+                            <li>GEdit</li>
+                            <li>SciTE Editor</li>
+                            <li>Notepad++</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>IDEs</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Eclipse</li>
+                            <li>Spring Tools Suite (STS)</li>
+                            <li>intelliJ IDEA</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>Database GUIs</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Mysql Workbench</li>
+                            <li>pgAdmin</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>Version Control</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Subversion SVN</li>
+                            <li>Git</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>Back End Coding, Tools &amp; Frameworks</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Java</li>
+                            <li>Spring MVC</li>
+                            <li>SQL</li>
+                            <li>C#</li>
+                            <li>ASP.NET</li>
+                            <li>.NET</li>
+                            <li>Haskell</li>
+                            <li>C / C++</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>Front End Coding, Tools &amp; Frameworks</h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>HTML &amp; HTML5</li>
+                            <li>Bootstrap</li>
+                            <li>CSS &amp; CSS3</li>
+                            <li>Javscript</li>
+                            <li>JQuery</li>
+                            <li>SASS/SCSS</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <h4>Technqiues &amp; Models </h4>
+                        <ul class="list-unstyled tag-list">
+                            <li>Object Oriented Programming</li>
+                            <li>Agile Development</li>
+                            <li>Imperative Programming</li>
+                            <li>Behaviour Driven Development</li>
+                            <li>Test Driven Development</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="resume-info-section">
+                    <h2 id="skills">Skills</h2>
+                    <ul class="list-unstyled skill-list">
+                        <li>
+                            Back End Coding Skills
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    <span class="sr-only">100%</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Front End Coding Skills
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    <span class="sr-only">70%</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Graphic Design Skills
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                                    <span class="sr-only">90%</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Server Management Skills
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:30%">
+                                    <span class="sr-only">30%</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Database Administration Skills
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                                    <span class="sr-only">60%</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            Project Management Skills
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                                    <span class="sr-only">90%</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section class="resume-info-section">
+                    <h2 id="what-next?">What next?</h2>
+                    <ol class="list-styled">
+                        <li>
+                            <a href="#">
+                                JSON parser for Google Visualisation API
+                            </a>
+                            <br>
+
+                            <small class="text-muted">
+                                Develop a Javascript parser which takes standardised JSON data and parses
+                                it into the format required by Google Visualisation's API.
+                            </small>
+                        </li>
+                    </ol>
+
+                </section>
+
+                <section class="resume-info-section">
+                    <h2 id="work-case-studies">Work Case Studies</h2>
+                    <div class="resume-info-section-block">
+                        <div class="media">
+                            <div class="media-body">
+                                <h3 class="media-heading">Halloween Hang Man</h3>
+                                <p>
+                                    An adaptation of the legendary hangman which I developed using Java and JavaFX. It boasts some nice GUI touches, including a clickable
+                                    alphabet, some fairly bizarre sound effects, a load and save game feature (by serializing Java Objects) and an in-game scoring system.
+                                    Sounds fun right? ..right??
+                                    <br><a href="https://github.com/benjaminmeysner/hangman">@@Github</a>
+                                </p>
+                            </div>
+                            <div class="media-right">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/HangMan.jpg">
+                                </a>
+                            </div>
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>Design</li>
+                                    <li>CSS</li>
+                                    <li>Java</li>
+                                    <li>JavaFX</li>
+                                    <li>XML</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.resume-info-section-block -->
+
+                    <div class="resume-info-section-block">
+
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/talkable_logo.jpg">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">talkable</h3>
+                                <p>
+                                    *Currently in development* talkable is a web application aimed for either academic or business use in which audience members can pose their questions in real time to the presenter. For members of the audience, the fear of public speaking often inhibits them from asking questions and thus receiving the vital information they need to progress. Here is a tool designed to improve the effeciency of teaching and experience of learning.
+
+
+                                    <a href="http://www.talkable.cf">www.talkable.cf</a>
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>Java</li>
+                                    <li>Spring Reactive</li>
+                                    <li>MongoDB</li>
+                                    <li>STOMP over WebSockets</li>
+                                    <li>Selenium</li>
+                                    <li>REST</li>
+                                    <li>AJAX</li>
+                                    <li>Design</li>
+                                    <li>HTML</li>
+                                    <li>Bootstrap</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <div class="media">
+                            <div class="media-body">
+                                <h3 class="media-heading">Online Art Gallery</h3>
+                                <p>
+                                    *Currently in development* A web application developed for an artistic family member who would like to
+                                    have the ability to upload photos of their personal work for others to view and comment. A link will
+                                    be provided once it's live.
+                                    <br><a href="https://github.com/benjaminmeysner/artgallery">@@Github</a>
+                                </p>
+                            </div>
+                            <div class="media-right">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/artgallery.jpg">
+                                </a>
+                            </div>
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>Java</li>
+                                    <li>Spring</li>
+                                    <li>MongoDB</li>
+                                    <li>HTML</li>
+                                    <li>Bootstrap</li>
+                                    <li>CSS</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resume-info-section-block">
+
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/jhill.png">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">Jemma Hill Photography</h3>
+                                <p>
+                                    *Currently in development* Developed for Jemma Hill. Allows the user to create/edit/remove photograph galleries dynamically.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>C#</li>
+                                    <li>ASP.Net MVC</li>
+                                    <li>SQL Server</li>
+                                    <li>HTML</li>
+                                    <li>Bootstrap</li>
+                                    <li>CSS</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="resume-info-section-block">
+                        <div class="media">
+                            <div class="media-body">
+                                <h3 class="media-heading">learnist</h3>
+                                <p>
+                                    This was part of a University Group Project module, we were requested to design a fully functional, dynamic web application
+                                    capable of providing online educational courses for customers. My efforts were predominantly on the back-end of the application, implementing
+                                    domain models, security (including 2FA), persistence.
+                                    <br><a href="https://github.com/benjaminmeysner/learnist">@@Github</a>
+                                </p>
+                            </div>
+                            <div class="media-right">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/learnist_logo.jpg">
+                                </a>
+                            </div>
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>Jave</li>
+                                    <li>Spring MVC</li>
+                                    <li>Spring Security</li>
+                                    <li>MySQL</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="resume-info-section-block">
+
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/mms.jpg">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">Scheduling Algorithms</h3>
+                                <p>
+                                    A Java command line program which simulates various process scheduling aglorithms; Best Fit, Worst Fit and First Fit.
+                                    Data is taken from a file so is easily modified and testable.
+                                    <br><a href="https://github.com/benjaminmeysner/mms">@@Github</a>
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>Java</li>
+                                    <li>Concurrency</li>
+                                    <li>Algorithm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resume-info-section-block">
+                        <div class="media">
+                            <div class="media-body">
+                                <h3 class="media-heading">Image Library</h3>
+                                <p>
+                                    A cross-platform, C++ based set of processing functions to smooth, blur, trim, pad and analyse image data as well other interesting manipulations.
+                                    <br><a href="https://github.com/benjaminmeysner/sortingalgorithms">@@Github</a>
+                                </p>
+                            </div>
+                            <div class="media-right">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/mms.jpg">
+                                </a>
+                            </div>
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>C++</li>
+                                    <li>Algorithm</li>
+                                    <li>WinAPI</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="resume-info-section-block">
+
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img alt="Project image" class="media-object" src="/Content/images/BFR.jpg">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">File Renamer</h3>
+                                <p>
+                                    A very tiny c# command line program which can rename multiple files to a given prefix and file extension. Not much else here!
+                                    <br><a href="https://github.com/benjaminmeysner/BulkRenamer">@@Github</a>
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4>What Did I Do?</h4>
+                                <ul class="list-unstyled tag-list">
+                                    <li>C#</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.resume-info-section-block -->
+                </section>
+
+
+                <section class="resume-info-section">
+                    <h2 id="hobbies-and-interests">Hobbies &amp; Interests</h2>
+                    <ul class="list-unstyled tag-list">
+                        <li>Good Character &amp; Human Interactions</li>
+                        <li>History &amp; Culture</li>
+                        <li>Travelling &amp; Experiencing the unfamiliar</li>
+                        <li>Current Events</li>
+                        <li>Science &amp; Technology</li>
+                        <li>Food &amp; Cooking</li>
+                        <li>Music Production</li>
+                        <li>Music Composition</li>
+                        <li>Musical Instruments</li>
+                        <li>Synthesizers/Sound Design</li>
+                    </ul>
+
+                </section>
+
+                <section class="resume-info-section tools-and-tech">
+                    <h2 id="files">My Files</h2>
+
+                    <div class="resume-info-section-block">
+                        <h4>Documents</h4>
+
+                        <ul class="list-unstyled tag-list">
+                            @foreach (var file in Model.Files)
+                            {
+                                <li>
+                                    @Html.ActionLink(file.FileName, "CollectFile", "File", new { id = file.FileId }, null)
+                                    <br />
+                                    <h4 style="display:inline">
+                                        <small style="display:inline; margin:0">
+                                            Downloads - @file.DownloadCount
+                                        </small>
+                                    </h4>
+                                </li>
+                            }
+                        </ul>
+                        </div>
+                </section>
+            </div>
+            <!-- /.resume-info -->
+
+            <div id="resumeNavigationScrollSpy" class="col-md-3">
+                <ul class="nav nav nav-pills nav-stacked resume-navigation hidden-print hidden-sm hidden-xs" data-spy="affix" data-offset-top="0">
+                    <li>
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                    <li>
+                        <a href="#education">Education</a>
+                    </li>
+                    <li>
+                        <a href="#experience">Experience</a>
+
+                    </li>
+                    <li>
+                        <a href="#tools-and-technologies">Tools &amp; Technologies</a>
+                    </li>
+                    <li>
+                        <a href="#skills">Skills</a>
+                    </li>
+                    <li>
+                    <li>
+                        <a href="#what-next?">What next?</a>
+                    </li>
+                    <li>
+                        <a href="#work-case-studies">Work Case Studies</a>
+                    </li>
+                    <li>
+                        <a href="#hobbies-and-interests">Hobbies &amp; Interests</a>
+                    </li>
+                    <li>
+                        <a href="#files">Files</a>
+                    </li>
+                    <li>
+                        <a href="http://www.soundcloud.com/4ze">Sound Works</a>
+                    </li>
+                </ul>
+                <!-- /.resume-navigation -->
+            </div> <!-- /#resumeNavigationScrollSpy -->
+            <br>
+            <h4 class="col-md-3">
+                <p>
+                    @Html.Partial("_siteStatisticsPartialView", Model)
+                </p>
+            </h4>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.Container -->
+    <!-- Javascript -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryunobtrusive")
+    @Scripts.Render("~/bundles/jqueryval")
+    <!-- /Javscript -->
+</body>
+
+</html>

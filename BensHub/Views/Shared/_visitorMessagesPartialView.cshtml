@@ -1,0 +1,23 @@
+﻿<div id="messages">
+
+    @foreach (var message in Model.VisitorMessages)
+    {
+        <div name="messageList" class="list-unstyled msg-entry">
+            <div style="display:block">
+                @message.Name
+            </div>
+            <div style="float:right; display:block">
+                <small class="text-muted">
+                    @message.DateTime
+                </small>
+            </div>
+            <br />
+            <div style="float:left; margin: 4px; text-align:left; display:block">
+                <small>
+                    @message.Message
+                </small>
+            </div>
+        </div>
+    }
+
+</div>
